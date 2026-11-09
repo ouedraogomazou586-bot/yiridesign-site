@@ -48,7 +48,7 @@ footer{border-top:1px solid var(--bd);padding:24px 0 40px;color:var(--mut);font-
 <a class="btn ghost" id="open" href="#">Ouvrir dans le navigateur</a>
 <span class="soon">▶ Bientôt sur Google Play</span>
 </div>
-<p class="note">Gratuit pour commencer. Aucune inscription nécessaire pour essayer.</p>
+<p class="note">Gratuit pour commencer. Aucune inscription nécessaire pour essayer.<br>Légère : environ 2 Mo à installer. Internet n'est nécessaire qu'à la première ouverture.</p>
 <div id="ios"><b>Sur iPhone :</b> ouvre cette page dans Safari, touche le bouton Partager, puis « Sur l'écran d'accueil ».</div>
 </div></header>
 
@@ -85,6 +85,7 @@ footer{border-top:1px solid var(--bd);padding:24px 0 40px;color:var(--mut);font-
 
 <section style="padding-top:0"><div class="w"><h2>Questions fréquentes</h2>
 <details><summary>L'application marche-t-elle sans internet ?</summary><p>Oui. Une fois installée, tu peux créer et exporter sans connexion. Seule la retouche « détourer avec l'IA » a besoin d'internet.</p></details>
+<details><summary>L'application est-elle vraiment si légère ?</summary><p>Oui, elle fait environ 2 Mo à installer. Elle ne prend presque pas de place sur ton téléphone, ce qui convient aux téléphones d'entrée de gamme. Tes créations sont enregistrées à part, sur ton téléphone.</p></details>
 <details><summary>Mes photos sont-elles envoyées quelque part ?</summary><p>Non. Tes créations et tes photos restent sur ton téléphone.</p></details>
 <details><summary>Comment mettre à jour ?</summary><p>L'application se met à jour toute seule quand tu ouvres avec internet.</p></details>
 <details><summary>Y aura-t-il une version Google Play ?</summary><p>Oui, elle est prévue prochainement.</p></details>
@@ -106,10 +107,10 @@ inst.onclick=function(ev){ev.preventDefault();
 
 /* APK : lu automatiquement dans la dernière « release » du dépôt GitHub de l'application. */
 var GH_OWNER=location.hostname.slice(-10)===".github.io"?location.hostname.split(".")[0]:"";
-var GH_REPO="yiridesign-apk";
+var GH_REPO="yiridesign";
 (function(){
  if(!GH_OWNER)return;
- fetch("https://api.github.com/repos/"+GH_OWNER+"/"+GH_REPO+"/releases/latest").then(function(r){if(r.status===403||r.status===429){var b0=document.getElementById("apk");b0.href="https://github.com/"+GH_OWNER+"/"+GH_REPO+"/releases/latest/download/YiriDesign.apk";b0.style.display="inline-flex";return Promise.reject();}return r.ok?r.json():Promise.reject();}).then(function(j){
+ fetch("https://api.github.com/repos/"+GH_OWNER+"/"+GH_REPO+"/releases/latest").then(function(r){if(r.status===403||r.status===429){var b0=document.getElementById("apk");b0.href="https://github.com/"+GH_OWNER+"/"+GH_REPO+"/releases/latest";b0.style.display="inline-flex";return Promise.reject();}return r.ok?r.json():Promise.reject();}).then(function(j){
   var as=(j.assets||[]).filter(function(a){return /\.apk$/i.test(a.name);})[0];if(!as)return;
   var b=document.getElementById("apk");b.href=as.browser_download_url;b.style.display="inline-flex";
   var mo=(as.size/1048576).toFixed(1).replace(".",","),d=new Date(j.published_at).toLocaleDateString("fr-FR");
